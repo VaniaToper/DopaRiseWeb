@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "25V6G6G5YL.com.dopamine.mobile.app",
+        "paths": ["/reset-password", "/reset-password/*"]
+      }
+    ]
+  }
+}

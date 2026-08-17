@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.dopamine_levels.app",
+      "sha256_cert_fingerprints": [
+        "8A:65:7A:23:EB:AD:54:42:5E:72:6C:40:A1:20:4D:C2:33:B0:E0:80:B6:EA:48:79:B8:D8:5E:B3:5F:84:A3:63"
+      ]
+    }
+  }
+]
