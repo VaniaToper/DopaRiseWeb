@@ -3,72 +3,621 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DopaRise</title>
-  <meta name="description" content="DopaRise — track habits, build streaks, and rise every day." />
+  <title>DopaRise — Build better habits every day</title>
+  <meta name="description" content="DopaRise tracks 11 daily habits, scores your day 0–100, and helps you rebuild a healthier dopamine baseline. Privacy-first — check-ins stay on your device." />
+  <link rel="canonical" href="https://doparise.com/" />
+  <link rel="icon" type="image/png" href="/assets/app-logo.png" />
+  <link rel="apple-touch-icon" href="/assets/app-logo.png" />
+  <meta name="theme-color" content="#0B0F14" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://doparise.com/" />
+  <meta property="og:title" content="DopaRise — Build better habits every day" />
+  <meta property="og:description" content="Track habits, score your day, rise through five levels. Quiet progress — no ads, no tracking SDKs." />
+  <meta property="og:image" content="https://doparise.com/assets/app-logo.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="DopaRise" />
+  <meta name="twitter:description" content="Build better habits every day." />
+  <meta name="twitter:image" content="https://doparise.com/assets/app-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      color-scheme: light;
-      --text: #f5f7fa;
-      --muted: rgba(245, 247, 250, 0.65);
-      --accent: #5a8fd4;
-      --accent-2: #6b4fc8;
-      --card: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.12);
+      color-scheme: dark;
+      --bg: #0b0f14;
+      --bg-2: #0d1220;
+      --text: #ecf1f8;
+      --muted: #7a9ab8;
+      --faint: #3d5570;
+      --accent: #8dbde0;
+      --accent-2: #7ba7d4;
+      --accent-deep: #4a6fa5;
+      --olive: #5f6f52;
+      --success: #4e9470;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+      --radius: 1.25rem;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      min-height: 100vh;
       font-family: "DM Sans", system-ui, -apple-system, sans-serif;
-      background:
-        radial-gradient(circle at 80% -10%, rgba(59, 110, 168, 0.28), transparent 45%),
-        linear-gradient(160deg, #0b0f14, #0d1220 45%, #0b0f1e);
+      background: var(--bg);
       color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 82% -8%, rgba(59, 110, 168, 0.28), transparent 42%),
+        radial-gradient(circle at 8% 88%, rgba(74, 59, 138, 0.16), transparent 40%),
+        linear-gradient(160deg, #0b0f14, #0d1220 45%, #0b0f1e);
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header.nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
+      justify-content: space-between;
+      padding: 1.15rem 0 0.5rem;
+      gap: 1rem;
     }
-    main {
-      width: min(100%, 28rem);
-      padding: 2rem 1.75rem;
-      border-radius: 1.25rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-      text-align: center;
-    }
-    h1 {
-      margin: 0 0 0.5rem;
-      font-size: 2rem;
-      letter-spacing: -0.04em;
-    }
-    p {
-      margin: 0;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-    footer {
-      margin-top: 1.5rem;
-    }
-    footer a {
-      color: var(--accent);
-      font-size: 0.9rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      font-size: 1.05rem;
       text-decoration: none;
     }
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
+      box-shadow: 0 8px 28px rgba(139, 92, 246, 0.28);
+    }
+    nav.links {
+      display: flex;
+      gap: 1.15rem;
+      align-items: center;
+      font-size: 0.92rem;
+    }
+    nav.links a { color: var(--muted); text-decoration: none; }
+    nav.links a:hover { color: var(--text); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 3.5rem;
+      align-items: center;
+      padding: 3.2rem 0 4.5rem;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--accent-2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9dc3e8;
+      box-shadow: 0 0 10px #9dc3e8;
+    }
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(2.15rem, 4.4vw, 3.55rem);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+    .lede {
+      margin: 0 0 1.6rem;
+      max-width: 36rem;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.6;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+    .btn.primary {
+      background: linear-gradient(180deg, #5a8fd4, var(--accent-deep));
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(74, 111, 165, 0.28);
+    }
+    .btn.primary:hover { text-decoration: none; filter: brightness(1.08); }
+    .btn.ghost {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    .btn.ghost:hover { text-decoration: none; background: rgba(255, 255, 255, 0.07); }
+    .fine {
+      margin: 1rem 0 0;
+      color: var(--faint);
+      font-size: 0.85rem;
+    }
+
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+    }
+    .phone {
+      width: 290px;
+      border-radius: 36px;
+      padding: 10px;
+      background: linear-gradient(160deg, #1a2436, #0c1018);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(141, 189, 224, 0.08);
+    }
+    .phone-screen {
+      border-radius: 28px;
+      overflow: hidden;
+      background: #080c11;
+      min-height: 560px;
+      position: relative;
+      padding: 1.15rem 1rem 4.4rem;
+    }
+    .notch {
+      width: 88px;
+      height: 8px;
+      border-radius: 99px;
+      background: #111822;
+      margin: 0 auto 1rem;
+    }
+    .phone-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.1rem;
+    }
+    .phone-top strong { font-size: 1.05rem; letter-spacing: -0.03em; }
+    .pts { color: var(--accent); font-size: 0.78rem; font-weight: 600; }
+    .lvl { font-size: 1.55rem; font-weight: 700; letter-spacing: -0.04em; }
+    .lvl-sub { color: var(--accent-2); font-size: 0.88rem; font-weight: 500; margin: 0.15rem 0 0.85rem; }
+    .score-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55rem;
+      margin-bottom: 0.9rem;
+    }
+    .stat {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 0.65rem 0.7rem;
+    }
+    .stat span { display: block; color: var(--muted); font-size: 0.68rem; }
+    .stat b { font-size: 1.05rem; letter-spacing: -0.03em; }
+    .bar {
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      margin-bottom: 1.1rem;
+    }
+    .bar i {
+      display: block;
+      width: 62%;
+      height: 100%;
+      background: linear-gradient(90deg, #6b9ac4, #8dbde0);
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .pill {
+      font-size: 0.7rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(78, 148, 112, 0.16);
+      color: #8fd0a8;
+      border: 1px solid rgba(78, 148, 112, 0.28);
+    }
+    .pill.off {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    .thought {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 0.85rem;
+    }
+    .thought small {
+      display: block;
+      color: var(--accent-2);
+      letter-spacing: 0.12em;
+      font-size: 0.62rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .thought p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: #eef2f8;
+      line-height: 1.45;
+    }
+    .tabbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: rgba(13, 21, 38, 0.88);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.55rem 0.3rem 0.7rem;
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .tabbar b { display: block; font-size: 0.92rem; margin-bottom: 0.1rem; font-weight: 500; }
+    .tabbar .on { color: var(--accent); }
+
+    section { padding: 1rem 0 3.4rem; }
+    h2 {
+      margin: 0 0 0.45rem;
+      font-size: clamp(1.55rem, 3vw, 2.05rem);
+      letter-spacing: -0.035em;
+    }
+    .section-lede {
+      margin: 0 0 1.6rem;
+      color: var(--muted);
+      max-width: 38rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.9rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.15rem 1.25rem;
+      backdrop-filter: blur(16px);
+    }
+    .card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: rgba(141, 189, 224, 0.12);
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .habits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .habit {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .levels {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.65rem;
+    }
+    .level {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 0.8rem;
+      text-align: center;
+    }
+    .level b { display: block; color: var(--accent); font-size: 0.75rem; margin-bottom: 0.3rem; }
+    .level span { display: block; font-size: 0.88rem; font-weight: 600; letter-spacing: -0.02em; }
+    .level small { display: block; margin-top: 0.35rem; color: var(--muted); font-size: 0.72rem; line-height: 1.35; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+    .step-n {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .privacy-banner {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 1.5rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(18, 26, 42, 0.9), rgba(14, 21, 34, 0.9));
+      border: 1px solid rgba(123, 167, 212, 0.28);
+      border-radius: 20px;
+      padding: 1.6rem 1.7rem;
+    }
+    .privacy-banner p { margin: 0.4rem 0 0; color: var(--muted); }
+
+    footer.site {
+      border-top: 1px solid var(--border);
+      padding: 1.6rem 0 2.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    footer.site a { color: var(--muted); }
+    footer.site a:hover { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .hero, .grid-3, .levels, .steps, .privacy-banner {
+        grid-template-columns: 1fr;
+      }
+      .hero { padding-top: 1.6rem; gap: 2.2rem; }
+      .levels { grid-template-columns: 1fr 1fr; }
+      .phone { width: 270px; }
+    }
+    @media (max-width: 560px) {
+      nav.links a.hid { display: none; }
+      h1 { font-size: 2.05rem; }
+    }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "DopaRise",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "iOS, Android",
+    "url": "https://doparise.com",
+    "description": "Habit tracker that scores your day, personalizes focus habits, and helps rebuild a healthier dopamine baseline.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
 </head>
 <body>
-  <main>
-    <h1>DopaRise</h1>
-    <p>Track habits. Build streaks. Rise every day.</p>
-    <footer>
-      <a href="/support">Support</a>
-      ·
-      <a href="/privacy-policy">Privacy Policy</a>
-      ·
-      <a href="mailto:ivan.hodynchuk77@gmail.com">ivan.hodynchuk77@gmail.com</a>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="/">
+        <img src="/assets/app-logo.png" alt="" width="40" height="40" />
+        DopaRise
+      </a>
+      <nav class="links" aria-label="Site">
+        <a class="hid" href="#how">How it works</a>
+        <a class="hid" href="#features">Features</a>
+        <a href="/support">Support</a>
+        <a href="/privacy-policy">Privacy</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Quiet progress</div>
+        <h1>Build better habits every day.</h1>
+        <p class="lede">
+          DopaRise is a calm habit tracker for a healthier dopamine baseline.
+          Log eleven daily habits, get a 0–100 day score, and rise through five
+          levels — without ads, streaks-shaming, or cheap stimulation.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="#how">See how it works</a>
+          <a class="btn ghost" href="/support">Get support</a>
+        </div>
+        <p class="fine">Free on iOS. Check-ins stay on your device.</p>
+      </div>
+
+      <div class="phone-wrap" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="notch"></div>
+            <div class="phone-top">
+              <strong>Today</strong>
+              <span class="pts">1,240 DP</span>
+            </div>
+            <div class="lvl">Level 3</div>
+            <div class="lvl-sub">Balanced Achiever</div>
+            <div class="score-row">
+              <div class="stat"><span>Today’s score</span><b>72 / 100</b></div>
+              <div class="stat"><span>Streak</span><b>8 days</b></div>
+            </div>
+            <div class="bar"><i></i></div>
+            <div class="pills">
+              <span class="pill">Exercise</span>
+              <span class="pill">Sleep</span>
+              <span class="pill">Water</span>
+              <span class="pill">Reading</span>
+              <span class="pill off">Screens</span>
+            </div>
+            <div class="thought">
+              <small>CONSISTENCY</small>
+              <p>Quiet progress is still progress. Keep going.</p>
+            </div>
+            <div class="tabbar">
+              <div class="on"><b>▣</b>Dashboard</div>
+              <div><b>✓</b>Habits</div>
+              <div><b>◎</b>Social</div>
+              <div><b>○</b>Account</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2>Start from where you are</h2>
+      <p class="section-lede">
+        A short onboarding assessment sets a baseline and a small set of focus
+        habits. You begin at Level 1 — the snapshot just shows where to start.
+      </p>
+      <div class="steps">
+        <article class="card">
+          <div class="step-n">01</div>
+          <h3>Assess</h3>
+          <p>Answer a few questions on sleep, screens, reading, movement, and similar routines. DopaRise maps the weakest answers to focus habits for 14 days.</p>
+        </article>
+        <article class="card">
+          <div class="step-n">02</div>
+          <h3>Check in</h3>
+          <p>Log exercise, sleep, water, meditation, reading, sunlight, cold shower, screen time, and whether you stayed smoke-free, skipped alcohol, and skipped junk food.</p>
+        </article>
+        <article class="card">
+          <div class="step-n">03</div>
+          <h3>Rise</h3>
+          <p>Your daily score (0–100) and 14-day rolling average set your level. DopaPoints accumulate for lifetime effort. A missed day does not erase past points.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Built for quiet consistency</h2>
+      <p class="section-lede">Same dark, restrained UI as the app. Subtle gamification — not a slot machine.</p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon">◎</div>
+          <h3>Daily score, not noise</h3>
+          <p>Core habits, positive habits, and penalties combine into one 0–100 score. Sleep multiplies the rest — protect it and everything else moves.</p>
+        </article>
+        <article class="card">
+          <div class="icon">△</div>
+          <h3>Five calm levels</h3>
+          <p>From Dopamine Seeker to Dopamine Sage. Titles stay non-judgmental. Progress comes from a 14-day rolling score, not a single perfect day.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◈</div>
+          <h3>Focus window</h3>
+          <p>After onboarding, two or three habits get extra attention for two weeks. Tiny first actions beat stacking everything at once.</p>
+        </article>
+        <article class="card">
+          <div class="icon">▣</div>
+          <h3>Insights &amp; trends</h3>
+          <p>Weekly analytics, smart insights, and a thought for today. Progress, not perfection — each mindful choice still counts.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◎</div>
+          <h3>Buddies &amp; follow</h3>
+          <p>Optional account unlocks username search, follows, a light activity feed, and up to three accountability buddies. Profiles can stay private.</p>
+        </article>
+        <article class="card">
+          <div class="icon">◐</div>
+          <h3>Reminders on-device</h3>
+          <p>Optional local reminders. DopaRise does not send remote push, does not run ads SDKs, and does not sell your data.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="habits">
+      <h2>Eleven habits, one check-in</h2>
+      <p class="section-lede">Positive habits score effort. Smoke-free, alcohol, and junk food score restraint. Completing the list updates your score and streak.</p>
+      <div class="habits">
+        <span class="habit">Exercise</span>
+        <span class="habit">Sleep</span>
+        <span class="habit">Water</span>
+        <span class="habit">Meditation</span>
+        <span class="habit">Reading</span>
+        <span class="habit">Cold shower</span>
+        <span class="habit">Sunlight</span>
+        <span class="habit">Screen time</span>
+        <span class="habit">Smoke-free</span>
+        <span class="habit">Alcohol</span>
+        <span class="habit">Junk food</span>
+      </div>
+    </section>
+
+    <section id="levels">
+      <h2>Levels 1–5</h2>
+      <p class="section-lede">Identity copy from the app — calm, not punitive.</p>
+      <div class="levels">
+        <div class="level"><b>Level 1</b><span>Dopamine Seeker</span><small>Regaining control — every step counts</small></div>
+        <div class="level"><b>Level 2</b><span>Mindful Explorer</span><small>Building momentum — stay consistent</small></div>
+        <div class="level"><b>Level 3</b><span>Balanced Achiever</span><small>Balanced and focused — keep going</small></div>
+        <div class="level"><b>Level 4</b><span>Zen Master</span><small>Clear and in control — well done</small></div>
+        <div class="level"><b>Level 5</b><span>Dopamine Sage</span><small>Peak clarity — quiet mastery</small></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="privacy-banner">
+        <div>
+          <h2>Your check-ins stay on the phone</h2>
+          <p>
+            Daily habit history lives in local storage. An account is optional and
+            only needed for social features. Read how we handle data in the
+            <a href="/privacy-policy">Privacy Policy</a>, or reach us via
+            <a href="/support">Support</a>.
+          </p>
+        </div>
+        <div class="cta-row">
+          <a class="btn ghost" href="mailto:ivan.hodynchuk77@gmail.com">ivan.hodynchuk77@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site">
+      <span>© 2026 DopaRise</span>
+      <span>
+        <a href="/">Home</a>
+        ·
+        <a href="/support">Support</a>
+        ·
+        <a href="/privacy-policy">Privacy Policy</a>
+        ·
+        <a href="/reset-password">Reset password</a>
+      </span>
     </footer>
-  </main>
+  </div>
 </body>
 </html>

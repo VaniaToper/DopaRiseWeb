@@ -1,13 +1,19 @@
 # doparise.com
 
-Static site for the DopaRise app: landing page, support, privacy policy,
-password-reset fallback, and verified App / Universal Links.
+Static site for the DopaRise app: marketing landing page, support, privacy
+policy, password-reset fallback, and verified App / Universal Links.
+
+Use these URLs in App Store Connect / Play Console:
+
+- **Marketing URL:** `https://doparise.com`
+- **Support URL:** `https://doparise.com/support`
+- **Privacy Policy URL:** `https://doparise.com/privacy-policy`
 
 ## Public URLs
 
 | File | URL |
 | --- | --- |
-| `index.html` | `https://doparise.com/` |
+| `index.html` | `https://doparise.com/` (marketing) |
 | `privacy-policy.html` | `https://doparise.com/privacy-policy` |
 | `support.html` | `https://doparise.com/support` |
 | `reset-password.html` | `https://doparise.com/reset-password` |
