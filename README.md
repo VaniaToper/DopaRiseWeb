@@ -1,7 +1,7 @@
 # doparise.com
 
-Static site for the DopaRise app: landing page, password-reset fallback, and
-verified App / Universal Links.
+Static site for the DopaRise app: landing page, support, privacy policy,
+password-reset fallback, and verified App / Universal Links.
 
 ## Public URLs
 
@@ -9,6 +9,7 @@ verified App / Universal Links.
 | --- | --- |
 | `index.html` | `https://doparise.com/` |
 | `privacy-policy.html` | `https://doparise.com/privacy-policy` |
+| `support.html` | `https://doparise.com/support` |
 | `reset-password.html` | `https://doparise.com/reset-password` |
 | `.well-known/assetlinks.json` | `https://doparise.com/.well-known/assetlinks.json` |
 | `.well-known/apple-app-site-association` | `https://doparise.com/.well-known/apple-app-site-association` |
