@@ -8,6 +8,7 @@ verified App / Universal Links.
 | File | URL |
 | --- | --- |
 | `index.html` | `https://doparise.com/` |
+| `privacy-policy.html` | `https://doparise.com/privacy-policy` |
 | `reset-password.html` | `https://doparise.com/reset-password` |
 | `.well-known/assetlinks.json` | `https://doparise.com/.well-known/assetlinks.json` |
 | `.well-known/apple-app-site-association` | `https://doparise.com/.well-known/apple-app-site-association` |
