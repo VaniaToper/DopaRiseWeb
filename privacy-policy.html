@@ -97,16 +97,20 @@
         and username.
       </li>
       <li>
-        <strong>Profile and social data.</strong> Username, optional avatar URL
-        and bio, whether your profile is public, follow relationships, buddy
-        (accountability) contracts, and activity you share with people in your
-        network (for example streak or habit events).
+        <strong>Profile and social data.</strong> Username, whether your profile
+        is public, follow relationships, buddy (accountability) contracts
+        (including an optional note when you send an invite), and activity you
+        share with people in your network. Activity events can include streak
+        milestones and that you completed certain habits (for example sleep,
+        meditation, or exercise). The app does not currently let you set a bio
+        or profile photo.
       </li>
       <li>
         <strong>Habit and progress data.</strong> Daily check-ins, scores,
-        streaks, onboarding answers, reading progress, and app settings. This
-        is stored on your device. Some profile stats (such as streak) may also
-        be stored in our cloud database so they can appear on your profile.
+        streaks, onboarding answers, mood, reading progress, and app settings
+        are stored on your device. We do not store your full check-in history
+        in the cloud. Signed-in social activity events (described above) are
+        stored in our database so they can appear in your network’s feed.
       </li>
       <li>
         <strong>Notifications.</strong> If you enable reminders, we store your
@@ -117,20 +121,25 @@
         <strong>Technical data.</strong> The app checks network connectivity to
         talk to our servers. Timezone is used only to schedule local reminders.
       </li>
+      <li>
+        <strong>Book search.</strong> If you search for a book while tracking
+        reading, that search query is sent to the Google Books API.
+      </li>
     </ul>
     <p>
-      We do not collect precise location, contacts, photos from your camera
-      roll (unless you later add that yourself), payment card details, or
-      advertising identifiers. We do not run third-party analytics or ads SDKs.
+      We do not collect precise location, contacts from your address book,
+      photos from your camera roll, payment card details, or advertising
+      identifiers. We do not run third-party analytics or ads SDKs. We do not
+      use collected data for advertising or tracking.
     </p>
 
     <h2>3. How we use information</h2>
     <ul>
       <li>Create and secure your account, and reset your password.</li>
-      <li>Provide habit tracking, scores, streaks, and insights.</li>
+      <li>Provide habit tracking, scores, streaks, and insights on your device.</li>
       <li>Power social features (search, follow, buddies, activity).</li>
       <li>Schedule optional on-device reminders you turn on.</li>
-      <li>Operate, maintain, and improve the app and website.</li>
+      <li>Operate and maintain the app and website.</li>
     </ul>
 
     <h2>4. Where data is stored</h2>
@@ -138,7 +147,8 @@
       Account, profile, social, and in-app notification data are stored with
       <strong>Supabase</strong>, our authentication and database provider.
       Habit check-ins and most progress history stay in local storage on your
-      device unless a feature needs a cloud copy for your profile or network.
+      device. Social activity events are stored in the cloud so they can appear
+      in your network’s feed.
     </p>
     <p>
       Password-reset emails use a link on this website
@@ -160,8 +170,8 @@
       </li>
     </ul>
     <p>
-      Images (avatars, book covers) may be cached on your device to load
-      faster. Those providers process data under their own privacy policies.
+      Book cover images may be cached on your device to load faster. Google
+      processes search queries under its own privacy policy.
     </p>
 
     <h2>6. Sharing</h2>
@@ -193,7 +203,9 @@
     <p>
       In the app you can: sign out; reset today’s check-in; or reset all local
       app data (Settings). To delete your account and associated cloud data,
-      contact us using the details below and we will process the request.
+      email us at
+      <a href="mailto:hello@doparise.com">hello@doparise.com</a>
+      and we will process the request.
     </p>
 
     <h2>9. Children</h2>
@@ -227,8 +239,9 @@
 
     <h2>13. Contact</h2>
     <p>
-      Questions about this policy, or requests to delete your account: use
-      Settings → Give feedback in the DopaRise app, or visit
+      Questions about this policy, or requests to delete your account: email
+      <a href="mailto:hello@doparise.com">hello@doparise.com</a>
+      or visit
       <a href="https://doparise.com">doparise.com</a>.
     </p>
   </main>
