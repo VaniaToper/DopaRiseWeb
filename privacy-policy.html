@@ -73,7 +73,7 @@
   <main>
     <a class="brand" href="/">DopaRise</a>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: 19 August 2026</p>
+    <p class="updated">Last updated: 20 August 2026</p>
 
     <p>
       This Privacy Policy explains how DopaRise (“we”, “us”) collects, uses, and
@@ -106,11 +106,15 @@
         or profile photo.
       </li>
       <li>
-        <strong>Habit and progress data.</strong> Daily check-ins, scores,
-        streaks, onboarding answers, mood, reading progress, and app settings
-        are stored on your device. We do not store your full check-in history
-        in the cloud. Signed-in social activity events (described above) are
-        stored in our database so they can appear in your network’s feed.
+        <strong>Habit and progress data.</strong> Daily check-ins (including
+        sleep, exercise, meditation, water, reading, sunlight, cold shower,
+        screen time, smoke-free status, alcohol, and junk food), scores,
+        streaks, onboarding answers, reading progress, smoke-free history,
+        and app settings. Without an account this stays on your device. If
+        you create an account, we copy it to our cloud database linked to
+        your user ID so you can restore progress after reinstall or on a
+        new device. Signed-in social activity events (described above) are
+        also stored so they can appear in your network’s feed.
       </li>
       <li>
         <strong>Notifications.</strong> If you enable reminders, we store your
@@ -120,10 +124,8 @@
       <li>
         <strong>Technical data.</strong> The app checks network connectivity to
         talk to our servers. Timezone is used only to schedule local reminders.
-      </li>
-      <li>
-        <strong>Book search.</strong> If you search for a book while tracking
-        reading, that search query is sent to the Google Books API.
+        When you have an account we also store last-open dates used to sync
+        your progress.
       </li>
     </ul>
     <p>
@@ -136,7 +138,8 @@
     <h2>3. How we use information</h2>
     <ul>
       <li>Create and secure your account, and reset your password.</li>
-      <li>Provide habit tracking, scores, streaks, and insights on your device.</li>
+      <li>Provide habit tracking, scores, streaks, and insights.</li>
+      <li>Sync signed-in progress so you can restore it after reinstall.</li>
       <li>Power social features (search, follow, buddies, activity).</li>
       <li>Schedule optional on-device reminders you turn on.</li>
       <li>Operate and maintain the app and website.</li>
@@ -144,11 +147,12 @@
 
     <h2>4. Where data is stored</h2>
     <p>
-      Account, profile, social, and in-app notification data are stored with
+      Account, profile, social, notification preferences, and — when you are
+      signed in — habit progress and daily logs are stored with
       <strong>Supabase</strong>, our authentication and database provider.
-      Habit check-ins and most progress history stay in local storage on your
-      device. Social activity events are stored in the cloud so they can appear
-      in your network’s feed.
+      A copy also stays in local storage on your device so the app works
+      offline. Social activity events are stored in the cloud so they can
+      appear in your network’s feed.
     </p>
     <p>
       Password-reset emails use a link on this website
@@ -159,19 +163,16 @@
     <p>We use a small set of processors to run the app:</p>
     <ul>
       <li>
-        <strong>Supabase</strong> — account authentication and cloud database.
+        <strong>Supabase</strong> — account authentication, cloud database, and
+        progress sync.
       </li>
       <li>
         <strong>Google Fonts</strong> — typography in the app.
       </li>
-      <li>
-        <strong>Google Books API</strong> — book search when you look up a book
-        to track reading. Your search query is sent to Google for that purpose.
-      </li>
     </ul>
     <p>
-      Book cover images may be cached on your device to load faster. Google
-      processes search queries under its own privacy policy.
+      If you log reading with a book title and pages, that is stored with your
+      other progress when you have an account.
     </p>
 
     <h2>6. Sharing</h2>
@@ -197,8 +198,10 @@
 
     <h2>8. Retention and deletion</h2>
     <p>
-      We keep account and cloud data while your account exists. Local habit
-      data stays on your device until you clear it or uninstall the app.
+      We keep account and cloud data, including synced progress, while your
+      account exists. Local habit data stays on your device until you clear it
+      or uninstall the app. Settings → Reset all app data also deletes the
+      cloud copy of your progress for that account.
     </p>
     <p>
       In the app you can: sign out; reset today’s check-in; or reset all local
